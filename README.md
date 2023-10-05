@@ -1,4 +1,4 @@
-# eslint-plugin-fsd
+# @kvadrofilii/eslint-plugin-fsd
 
 test eslint plugin
 
@@ -7,10 +7,10 @@ test eslint plugin
 You'll first need to install [ESLint](https://eslint.org/):
 
 ```sh
-npm i eslint --save-dev
+npm install eslint --save-dev
 ```
 
-Next, install `eslint-plugin-fsd`:
+Next, install `@kvadrofilii/eslint-plugin-fsd`:
 
 ```sh
 npm install @kvadrofilii/eslint-plugin-fsd --save-dev
@@ -18,11 +18,11 @@ npm install @kvadrofilii/eslint-plugin-fsd --save-dev
 
 ## Usage
 
-Add `eslint-plugin-fsd` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
+Add `@kvadrofilii/eslint-plugin-fsd` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
 
 ```json
 {
-  "plugins": ["fsd"]
+  "plugins": ["@kvadrofilii/fsd"]
 }
 ```
 
@@ -31,7 +31,7 @@ Then configure the rules you want to use under the rules section.
 ```json
 {
   "rules": {
-    "fsd/rule-name": 2
+    "@kvadrofilii/fsd/path-checker": "error"
   }
 }
 ```
@@ -40,6 +40,8 @@ Then configure the rules you want to use under the rules section.
 
 <!-- begin auto-generated rules list -->
 
-TODO: Run eslint-doc-generator to generate the rules list.
+| Name                                       | Description               |
+| :----------------------------------------- | :------------------------ |
+| [path-checker](docs/rules/path-checker.md) | FSD relative path checker |
 
 <!-- end auto-generated rules list -->

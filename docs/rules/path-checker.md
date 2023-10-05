@@ -1,4 +1,6 @@
-# FSD relative path checker (`path-checker`)
+# FSD relative path checker (`@kvadrofilii/fsd/path-checker`)
+
+<!-- end auto-generated rule header -->
 
 Please describe the origin of the rule here.
 
