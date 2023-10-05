@@ -1,6 +1,6 @@
 # @kvadrofilii/eslint-plugin-fsd
 
-test eslint plugin
+ESLint rules for Feature-Sliced Design.
 
 ## Installation
 
