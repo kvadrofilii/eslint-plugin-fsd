@@ -15,16 +15,36 @@ const rule = require('../../../lib/rules/path-checker'),
 // Tests
 //------------------------------------------------------------------------------
 
-const ruleTester = new RuleTester();
+const ruleTester = new RuleTester({
+  parserOptions: {
+    ecmaVersion: 6,
+    sourceType: 'module',
+  },
+});
 ruleTester.run('path-checker', rule, {
   valid: [
-    // give me some code that won't trigger a warning
+    {
+      filename: `/big-project/src/features/ArticleRating/ui/ArticleRating/ArticleRating.tsx`,
+      code: `import { ArticleRatingProps } from './ArticleRating.types';`,
+      errors: [{ message: 'В рамках одного слайса все пути должны быть относительными' }],
+    },
   ],
 
   invalid: [
     {
-      code: 'problem',
-      errors: [{ message: 'Fill me in.', type: 'Me too' }],
+      filename: `/big-project/src/features/ArticleRating/ui/ArticleRating/ArticleRating.tsx`,
+      code: `import { ArticleRatingProps } from 'features/ArticleRating/ui/ArticleRating/ArticleRating.types';`,
+      errors: [{ message: 'В рамках одного слайса все пути должны быть относительными' }],
+    },
+    {
+      filename: `/big-project/src/features/ArticleRating/ui/ArticleRating/ArticleRating.tsx`,
+      code: `import { ArticleRatingProps } from '@/features/ArticleRating/ui/ArticleRating/ArticleRating.types';`,
+      errors: [{ message: 'В рамках одного слайса все пути должны быть относительными' }],
+      options: [
+        {
+          alias: '@',
+        },
+      ],
     },
   ],
 });

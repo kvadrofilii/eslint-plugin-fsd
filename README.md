@@ -36,6 +36,16 @@ Then configure the rules you want to use under the rules section.
 }
 ```
 
+If use alias paths.
+
+```json
+{
+  "rules": {
+    "@kvadrofilii/fsd/path-checker": ["error", { "alias": "@" }]
+  }
+}
+```
+
 ## Rules
 
 <!-- begin auto-generated rules list -->
