@@ -1,4 +1,4 @@
-# FSD relative path checker (`@kvadrofilii/fsd/path-checker`)
+# FSD slice imports checker (`layer-imports`)
 
 Please describe the origin of the rule here.
 
