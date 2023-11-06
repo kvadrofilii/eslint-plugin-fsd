@@ -1,6 +1,6 @@
 {
   "name": "@kvadrofilii/eslint-plugin-fsd",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "FSD eslint rules",
   "keywords": [
     "eslint",
