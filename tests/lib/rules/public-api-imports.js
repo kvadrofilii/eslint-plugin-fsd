@@ -22,7 +22,7 @@ const aliasOptions = [
 const optionsTestFiles = [
   {
     alias: '@',
-    testFilesPatterns: ['**/*.test.*', '**/*.stories.*', '**/StoreDecorator.tsx'],
+    testFilesPatterns: ['**/*.test.*', '**/*.stories.*', '**/StoreDecorator.tsx', '**/*.testing.ts'],
   },
 ];
 
@@ -56,19 +56,30 @@ ruleTester.run('public-api-imports', rule, {
 
   invalid: [
     {
+      filename: '/project/src/entities/forbidden.ts',
       code: `import { CountrySelect } from '@/entities/Country/ui/CountrySelect';`,
-      errors: errorMessage,
-      options: aliasOptions,
-    },
-    {
-      filename: '/project/src/entities/StoreDecorator.tsx',
-      code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing/file.tsx'",
+      output: "import { CountrySelect } from '@/entities/Country';",
       errors: errorMessage,
       options: optionsTestFiles,
     },
     {
       filename: '/project/src/entities/forbidden.ts',
-      code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing'",
+      code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing';",
+      output: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article';",
+      errors: errorMessage,
+      options: optionsTestFiles,
+    },
+    {
+      filename: '/project/src/entities/StoreDecorator.tsx',
+      code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/Article.tsx';",
+      output: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing';",
+      errors: errorMessageTestFiles,
+      options: optionsTestFiles,
+    },
+    {
+      filename: '/project/src/entities/forbidden.test.ts',
+      code: "import { addCommentFormActions } from '@/entities/Article/Article.tsx';",
+      output: "import { addCommentFormActions } from '@/entities/Article/testing';",
       errors: errorMessageTestFiles,
       options: optionsTestFiles,
     },
