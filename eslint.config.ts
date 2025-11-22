@@ -1,3 +1,5 @@
-import eslintConfig from '@michael-yakovlev/eslint-config'
+import { defineConfig, globalIgnores } from 'eslint/config'
 
-export default eslintConfig()
+import { configs, GLOB_EXCLUDE } from '@michael-yakovlev/eslint-config'
+
+export default defineConfig([configs.base(), configs.prettier], globalIgnores([...GLOB_EXCLUDE]))
