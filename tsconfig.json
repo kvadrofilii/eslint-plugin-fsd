@@ -1,23 +1,23 @@
 {
     "$schema": "https://json.schemastore.org/tsconfig",
     "compilerOptions": {
-        "outDir": "dist",
-        "rootDir": "src",
-        "declaration": true,
-        "target": "ESNext",
-        "lib": ["ESNext"],
+        "target": "esnext",
+        "lib": ["esnext"],
         "moduleDetection": "force",
-        "module": "ESNext",
+        "module": "preserve",
+        "moduleResolution": "bundler",
+        "resolveJsonModule": true,
+        "types": ["node"],
         "strict": true,
+        "noUnusedLocals": true,
+        "declaration": true,
+        "emitDeclarationOnly": true,
         "esModuleInterop": true,
         "isolatedModules": true,
-        "moduleResolution": "bundler",
-        "noImplicitAny": true,
-        "strictNullChecks": true,
-        "types": ["node"],
         "verbatimModuleSyntax": true,
         "skipLibCheck": true,
-        "resolveJsonModule": true
+        "noImplicitAny": true,
+        "strictNullChecks": true
     },
-    "include": ["src"]
+    "include": ["src", "eslint.config.ts", "tsdown.config.ts"]
 }
