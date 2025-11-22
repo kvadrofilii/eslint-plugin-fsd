@@ -1,6 +1,6 @@
 import { run } from 'eslint-vitest-rule-tester'
-import { pathCheckerRule } from './path-checker'
-import { aliasOptions, parserOptions } from '../constants'
+import { aliasOptions, parserOptions } from './constants'
+import { pathCheckerRule } from '../rules/path-checker'
 
 const errors = [{ message: 'В рамках одного слайса не должно быть абсолютных импортов' }]
 
@@ -27,10 +27,5 @@ run({
             options: aliasOptions,
             errors,
         },
-        //{
-        //    filename: `/project/src/features/ArticleRating/ui/ArticleRating/ArticleRating.tsx`,
-        //    code: `import { ArticleRatingProps } from '../../../entities/ArticleRating/ui/ArticleRating/ArticleRating.types';`,
-        //    errors: [{ message: 'В рамках одного слайса все пути должны быть относительными' }],
-        //},
     ],
 })

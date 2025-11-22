@@ -1,15 +1,9 @@
-import {
-    getCurrentPath,
-    getImportPathWithoutAlias,
-    isPathRelative,
-    useFsdContextForCurrentFile,
-    useFsdContextForImportFile,
-} from '../utils'
-import type { Rule } from 'eslint'
 import { Layers } from '../constants'
-import type { RuleContextWithOptions } from '../types'
+import { getSourcePath, isPathRelative, usePathWithoutAlias } from '../fs'
+import { useFsdContext } from '../fsd'
+import type { Rule, RuleContextWithOptions } from '../types'
 
-export const pathCheckerRule: Rule.RuleModule = {
+export const pathCheckerRule: Rule = {
     meta: {
         type: 'problem',
         docs: {
@@ -31,9 +25,6 @@ export const pathCheckerRule: Rule.RuleModule = {
         ],
     },
     create(context: RuleContextWithOptions) {
-        const { options } = context
-        const alias: string = options[0]?.alias || ''
-
         return {
             ImportDeclaration(node) {
                 const value = node.source.value
@@ -43,12 +34,12 @@ export const pathCheckerRule: Rule.RuleModule = {
                 // Если импорт относительный, то заканчиваю проверку
                 if (isPathRelative(value)) return
 
-                const importPath = getImportPathWithoutAlias(value, alias)
-                const { layer: importPathLayer, slice: importPathSlice } = useFsdContextForImportFile(importPath)
+                const { pathWithoutAlias: importPath } = usePathWithoutAlias(value, context)
+                const { layer: importPathLayer, slice: importPathSlice } = useFsdContext(importPath)
                 if (!importPathLayer || !importPathSlice) return
 
-                const currentPath = getCurrentPath(context)
-                const { layer: currentPathLayer, slice: currentPathSlice } = useFsdContextForCurrentFile(currentPath)
+                const sourcePath = getSourcePath(context)
+                const { layer: currentPathLayer, slice: currentPathSlice } = useFsdContext(sourcePath)
                 if (!currentPathLayer || !currentPathSlice) return
 
                 // Исключаю слой 'shared'

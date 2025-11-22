@@ -1,5 +1,3 @@
-import type { Linter } from 'eslint'
-
 export enum Layers {
     app = 'app',
     pages = 'pages',
@@ -19,13 +17,3 @@ export const LAYERS_MAP: Record<string, keyof typeof Layers> = {
 } as const
 
 export const LAYERS = Object.values(LAYERS_MAP)
-
-export const PUBLIC_API_FILE_REGEXP: RegExp = /^.*\..*/i
-
-export const aliasOptions = [{ alias: '~' }]
-
-export const parserOptions: Linter.ParserOptions = {
-    ecmaVersion: 2020,
-    sourceType: 'module',
-    ecmaFeatures: { jsx: true },
-}

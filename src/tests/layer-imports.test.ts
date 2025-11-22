@@ -1,6 +1,6 @@
 import { run } from 'eslint-vitest-rule-tester'
-import { layerImportsRule } from './layer-imports'
-import { aliasOptions, parserOptions } from '../constants'
+import { aliasOptions, parserOptions } from './constants'
+import { layerImportsRule } from '../rules/layer-imports'
 
 const errors = [{ message: 'Слой может импортировать в себя только нижележащие слои' }]
 
@@ -119,6 +119,16 @@ run({
             filename: 'project/src/entities/article.tsx',
             code: "import { StoreProvider } from '~/entities/providers'",
             options: aliasOptions,
+            errors,
+        },
+        {
+            filename: `project/src/entities/ArticleRating/ui/ArticleRating/ArticleRating.tsx`,
+            code: `import { AboutPage } from '../../../pages/AboutPage'`,
+            errors,
+        },
+        {
+            filename: `project/src/pages/ArticleRating/ui/ArticleRating/ArticleRating.tsx`,
+            code: `import { AboutPage } from '../../../pages/AboutPage'`,
             errors,
         },
     ],

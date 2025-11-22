@@ -1,8 +1,8 @@
-import type { Rule } from 'eslint'
-import { getImportPathWithoutAlias, isPathRelative, useFsdContextForImportFile } from '../utils'
-import type { RuleContextWithOptions } from '../types'
+import { isPathRelative, usePathWithoutAlias } from '../fs'
+import { useFsdContext } from '../fsd'
+import type { Rule, RuleContextWithOptions } from '../types'
 
-export const publicApiImportsRule: Rule.RuleModule = {
+export const publicApiImportsRule: Rule = {
     meta: {
         type: 'problem',
         docs: {
@@ -25,20 +25,16 @@ export const publicApiImportsRule: Rule.RuleModule = {
         ],
     },
     create(context: RuleContextWithOptions) {
-        const { options } = context
-        const alias: string = options[0]?.alias || ''
-
         return {
             ImportDeclaration(node) {
                 const value = node.source.value
-
                 if (!value || typeof value !== 'string') return
 
                 // Если импорт относительный, то заканчиваем проверку
                 if (isPathRelative(value)) return
 
-                const importPath = getImportPathWithoutAlias(value, alias)
-                const { layer, slice, structure } = useFsdContextForImportFile(importPath)
+                const { pathWithoutAlias: importPath, alias } = usePathWithoutAlias(value, context)
+                const { layer, slice, structure } = useFsdContext(importPath)
                 if (!layer) return
 
                 // Если сегментов в импорте больше двух, то импорт не из publicApi

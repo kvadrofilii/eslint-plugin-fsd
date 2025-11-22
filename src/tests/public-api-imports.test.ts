@@ -1,6 +1,6 @@
 import { run } from 'eslint-vitest-rule-tester'
-import { publicApiImportsRule } from './public-api-imports'
-import { aliasOptions, parserOptions } from '../constants'
+import { aliasOptions, parserOptions } from './constants'
+import { publicApiImportsRule } from '../rules/public-api-imports'
 
 const errors = [{ message: 'Абсолютный импорт разрешен только через public API - index.ts' }]
 

@@ -1,6 +1,4 @@
-import type { Rule } from 'eslint'
-
-export type LiteralNodeValue = string | number | bigint | boolean | RegExp | null
+import type { Rule as EslintRule } from 'eslint'
 
 export type FsdStructure = {
     layer: string | null
@@ -10,8 +8,10 @@ export type FsdStructure = {
     layerLevel: number | null
 }
 
-export type RuleContextWithOptions = Rule.RuleContext & {
+export type RuleContextWithOptions = EslintRule.RuleContext & {
     options: Array<{
         alias?: string
     }>
 }
+
+export type Rule = EslintRule.RuleModule
