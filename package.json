@@ -1,6 +1,6 @@
 {
     "name": "@michael-yakovlev/eslint-plugin-fsd",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "type": "module",
     "license": "MIT",
     "description": "FSD eslint rules",

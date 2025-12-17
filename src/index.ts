@@ -19,6 +19,7 @@ const basicRuleConfigs = {
 const recommendedConfig = {
     name: `${pluginName}/recommended`,
     rules: basicRuleConfigs,
+    files: ['**/*.?([cm])[jt]s?(x)'],
 } satisfies Linter.Config
 
 // Base Plugin Object
