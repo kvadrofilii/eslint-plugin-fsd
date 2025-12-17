@@ -73,6 +73,11 @@ run({
             code: "import { StoreProvider } from '~/app/utils';",
             options: aliasOptions,
         },
+        {
+            filename: 'project/src/entities/article.tsx',
+            code: "import { StoreProvider } from '../model/api.ts'",
+            options: aliasOptions,
+        },
     ],
 
     invalid: [

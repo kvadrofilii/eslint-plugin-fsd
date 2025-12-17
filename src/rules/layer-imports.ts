@@ -43,7 +43,10 @@ export const layerImportsRule: Rule = {
                 // Исключаю импорты внутри слоя 'shared'
                 if (importFsdContext.layer === Layers.shared && currentFsdContext.layer === Layers.shared) return
 
-                if (currentFsdContext.layerLevel >= importFsdContext.layerLevel) {
+                if (
+                    currentFsdContext.layerLevel >= importFsdContext.layerLevel &&
+                    currentFsdContext.slice !== importFsdContext.slice
+                ) {
                     context.report({ node: node, messageId: 'notRelative' })
                 }
             },
